@@ -37,6 +37,8 @@ jobs:
         fi
         curl -L -o lbug.tar.gz https://github.com/LadybugDB/ladybug/releases/latest/download/$asset
         tar -xzf lbug.tar.gz
+        mkdir -p lib/dynamic/$os
+        mv liblbug.so lib/dynamic/$os/
         echo "LIBRARY_PATH=$(pwd)/lib/dynamic/$os:$LIBRARY_PATH" >> $GITHUB_ENV
         if [ "$RUNNER_OS" == "Linux" ]; then
           echo "LD_LIBRARY_PATH=$(pwd)/lib/dynamic/$os:$LD_LIBRARY_PATH" >> $GITHUB_ENV
@@ -74,6 +76,7 @@ jobs:
           git
           mingw-w64-ucrt-x86_64-go
           mingw-w64-ucrt-x86_64-gcc
+          unzip
 
     - uses: actions/checkout@v4
       
