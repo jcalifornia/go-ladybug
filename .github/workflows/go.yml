@@ -86,7 +86,7 @@ jobs:
       run: |
         asset="liblbug-windows-x86_64.zip"
         curl -L -o lbug.zip https://github.com/LadybugDB/ladybug/releases/latest/download/$asset
-        unzip lbug.zip
+        unzip -o lbug.zip
 
     - name: Build
       run: go build -v
