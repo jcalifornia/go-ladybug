@@ -422,13 +422,13 @@ func lbugValueToGoValue(lbugValue C.lbug_value) (any, error) {
 		return InternalID{TableID: uint64(value.table_id), Offset: uint64(value.offset)}, nil
 	case C.LBUG_BLOB:
 		var value *C.uint8_t
-		status := C.lbug_value_get_blob(&lbugValue, &value)
+		var length C.uint64_t
+		status := C.lbug_value_get_blob(&lbugValue, &value, &length)
 		if status != C.LbugSuccess {
 			return nil, fmt.Errorf("failed to get blob value with status: %d", status)
 		}
 		defer C.lbug_destroy_blob(value)
-		blobSize := C.strlen((*C.char)(unsafe.Pointer(value)))
-		blob := C.GoBytes(unsafe.Pointer(value), C.int(blobSize))
+		blob := C.GoBytes(unsafe.Pointer(value), C.int(length))
 		return blob, nil
 	case C.LBUG_NODE:
 		return lbugNodeValueToGoValue(lbugValue)
