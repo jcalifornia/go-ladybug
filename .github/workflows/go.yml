@@ -87,6 +87,7 @@ jobs:
         asset="liblbug-windows-x86_64.zip"
         curl -L -o lbug.zip https://github.com/LadybugDB/ladybug/releases/latest/download/$asset
         unzip -o lbug.zip
+        echo "LIBRARY_PATH=$(pwd)/lib/dynamic/windows:$LIBRARY_PATH" >> $GITHUB_ENV
 
     - name: Build
       run: go build -v
