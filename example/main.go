@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/ladybugdb/go-lbug"
+	"github.com/ladybugdb/go-ladybug"
 )
 
 func main() {
