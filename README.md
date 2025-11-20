@@ -1,15 +1,15 @@
-# go-lbug
+# go-ladybug
 [![Go Reference](https://pkg.go.dev/badge/github.com/ladybugdb/go-lbug.svg)](https://pkg.go.dev/github.com/ladybugdb/go-lbug)
 [![CI](https://github.com/LadybugDB/go-lbug/actions/workflows/go.yml/badge.svg)](https://github.com/LadybugDB/go-lbug/actions/workflows/go.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/ladybugdb/go-lbug)](https://goreportcard.com/report/github.com/ladybugdb/go-lbug)
 [![License](https://img.shields.io/github/license/lbugdb/go-lbug)](LICENSE)
 
-Official Go language binding for [Lbug](https://github.com/LadybugDB/lbug). Lbug an embeddable property graph database management system built for query speed and scalability. For more information, please visit the [Lbug GitHub repository](https://github.com/LadybugDB/ladybug) or the [Lbug website](https://ladybugdb.com).
+Official Go language binding for [LadybugDB](https://github.com/LadybugDB/ladybug). Ladybug is an embeddable property graph database management system built for query speed and scalability. For more information, please visit the [Ladybug GitHub repository](https://github.com/LadybugDB/ladybug) or the [Ladybug website](https://ladybugdb.com).
 
 ## Installation
 
 ```bash
-go get github.com/ladybugdb/go-lbug
+go get github.com/ladybugdb/go-ladybug
 ```
 
 ## Get started
@@ -23,7 +23,7 @@ go run main.go
 ```
 
 ## Docs
-The full documentation is available at [pkg.go.dev](https://pkg.go.dev/github.com/ladybugdb/go-lbug).
+The full documentation is available at [pkg.go.dev](https://pkg.go.dev/github.com/ladybugdb/go-ladybug).
 
 ## Tests
 To run the tests, you can use the following command:
