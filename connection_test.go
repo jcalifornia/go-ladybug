@@ -156,11 +156,11 @@ func TestExecute(t *testing.T) {
 }
 
 func TestExecuteError(t *testing.T) {
-	query := "RETURN $a;"
+	query := "RETURN $b;"
 	db, _ := SetupTestDatabase(t)
 	conn, _ := OpenConnection(db)
 	stmt, _ := conn.Prepare(query)
-	args := map[string]any{"b": int64(1)}
+	args := map[string]any{}
 	result, err := conn.Execute(stmt, args)
 	assert.NotNil(t, err)
 	assert.Contains(t, err.Error(), "Parameter b not found")
