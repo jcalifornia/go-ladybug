@@ -87,6 +87,9 @@ jobs:
         asset="liblbug-windows-x86_64.zip"
         curl -L -o lbug.zip https://github.com/LadybugDB/ladybug/releases/latest/download/$asset
         unzip -o lbug.zip
+        mkdir -p lib/dynamic/windows
+        mv lbug_shared.dll lib/dynamic/windows/
+        mv lbug_shared.lib lib/dynamic/windows/
         echo "LIBRARY_PATH=$(pwd)/lib/dynamic/windows:$LIBRARY_PATH" >> $GITHUB_ENV
 
     - name: Build
