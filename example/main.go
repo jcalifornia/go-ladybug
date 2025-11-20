@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/kuzudb/go-kuzu"
+	"github.com/ladybugdb/go-lbug"
 )
 
 func main() {
@@ -11,16 +11,16 @@ func main() {
 	dbPath := ":memory:"
 
 	// Open a database with default system configuration.
-	systemConfig := kuzu.DefaultSystemConfig()
+	systemConfig := lbug.DefaultSystemConfig()
 	systemConfig.BufferPoolSize = 1024 * 1024 * 1024
-	db, err := kuzu.OpenDatabase(dbPath, systemConfig)
+	db, err := lbug.OpenDatabase(dbPath, systemConfig)
 	if err != nil {
 		panic(err)
 	}
 	defer db.Close()
 
 	// Open a connection to the database.
-	conn, err := kuzu.OpenConnection(db)
+	conn, err := lbug.OpenConnection(db)
 	if err != nil {
 		panic(err)
 	}

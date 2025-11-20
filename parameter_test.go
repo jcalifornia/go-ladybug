@@ -1,4 +1,4 @@
-package kuzu
+package lbug
 
 import (
 	"regexp"

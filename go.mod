@@ -1,4 +1,4 @@
-module github.com/kuzudb/go-kuzu
+module github.com/ladybugdb/go-lbug
 
 go 1.20
 

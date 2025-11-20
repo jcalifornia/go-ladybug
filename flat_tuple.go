@@ -1,13 +1,13 @@
-package kuzu
+package lbug
 
-// #include "kuzu.h"
+// #include "lbug.h"
 // #include <stdlib.h>
 import "C"
 import "fmt"
 
 // FlatTuple represents a row in the result set of a query.
 type FlatTuple struct {
-	cFlatTuple  C.kuzu_flat_tuple
+	cFlatTuple  C.lbug_flat_tuple
 	queryResult *QueryResult
 	isClosed    bool
 }
@@ -18,15 +18,15 @@ func (tuple *FlatTuple) Close() {
 	if tuple.isClosed {
 		return
 	}
-	C.kuzu_flat_tuple_destroy(&tuple.cFlatTuple)
+	C.lbug_flat_tuple_destroy(&tuple.cFlatTuple)
 	tuple.isClosed = true
 }
 
 // GetAsString returns the string representation of the FlatTuple.
 // The string representation contains the values of the tuple separated by vertical bars.
 func (tuple *FlatTuple) GetAsString() string {
-	cString := C.kuzu_flat_tuple_to_string(&tuple.cFlatTuple)
-	defer C.kuzu_destroy_string(cString)
+	cString := C.lbug_flat_tuple_to_string(&tuple.cFlatTuple)
+	defer C.lbug_destroy_string(cString)
 	return C.GoString(cString)
 }
 
@@ -69,10 +69,10 @@ func (tuple *FlatTuple) GetAsMap() (map[string]any, error) {
 
 // GetValue returns the value at the given index in the FlatTuple.
 func (tuple *FlatTuple) GetValue(index uint64) (any, error) {
-	var cValue C.kuzu_value
-	status := C.kuzu_flat_tuple_get_value(&tuple.cFlatTuple, C.uint64_t(index), &cValue)
-	if status != C.KuzuSuccess {
+	var cValue C.lbug_value
+	status := C.lbug_flat_tuple_get_value(&tuple.cFlatTuple, C.uint64_t(index), &cValue)
+	if status != C.LbugSuccess {
 		return nil, fmt.Errorf("failed to get value with status: %d", status)
 	}
-	return kuzuValueToGoValue(cValue)
+	return lbugValueToGoValue(cValue)
 }

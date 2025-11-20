@@ -1,15 +1,15 @@
-# go-kuzu
-[![Go Reference](https://pkg.go.dev/badge/github.com/kuzudb/go-kuzu.svg)](https://pkg.go.dev/github.com/kuzudb/go-kuzu)
-[![CI](https://github.com/kuzudb/go-kuzu/actions/workflows/go.yml/badge.svg)](https://github.com/kuzudb/go-kuzu/actions/workflows/go.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/kuzudb/go-kuzu)](https://goreportcard.com/report/github.com/kuzudb/go-kuzu)
-[![License](https://img.shields.io/github/license/kuzudb/go-kuzu)](LICENSE)
+# go-lbug
+[![Go Reference](https://pkg.go.dev/badge/github.com/ladybugdb/go-lbug.svg)](https://pkg.go.dev/github.com/ladybugdb/go-lbug)
+[![CI](https://github.com/LadybugDB/go-lbug/actions/workflows/go.yml/badge.svg)](https://github.com/LadybugDB/go-lbug/actions/workflows/go.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ladybugdb/go-lbug)](https://goreportcard.com/report/github.com/ladybugdb/go-lbug)
+[![License](https://img.shields.io/github/license/lbugdb/go-lbug)](LICENSE)
 
-Official Go language binding for [Kuzu](https://github.com/kuzudb/kuzu). Kuzu an embeddable property graph database management system built for query speed and scalability. For more information, please visit the [Kuzu GitHub repository](https://github.com/kuzudb/kuzu) or the [Kuzu website](https://kuzudb.com).
+Official Go language binding for [Lbug](https://github.com/LadybugDB/lbug). Lbug an embeddable property graph database management system built for query speed and scalability. For more information, please visit the [Lbug GitHub repository](https://github.com/LadybugDB/ladybug) or the [Lbug website](https://ladybugdb.com).
 
 ## Installation
 
 ```bash
-go get github.com/kuzudb/go-kuzu
+go get github.com/ladybugdb/go-lbug
 ```
 
 ## Get started
@@ -23,7 +23,7 @@ go run main.go
 ```
 
 ## Docs
-The full documentation is available at [pkg.go.dev](https://pkg.go.dev/github.com/kuzudb/go-kuzu).
+The full documentation is available at [pkg.go.dev](https://pkg.go.dev/github.com/ladybugdb/go-lbug).
 
 ## Tests
 To run the tests, you can use the following command:
@@ -40,14 +40,14 @@ For Cgo to properly work on Windows, MSYS2 with `UCRT64` environment is required
    ```bash
    pacman -S mingw-w64-ucrt-x86_64-go mingw-w64-ucrt-x86_64-gcc
    ```
-4. Add the path to `kuzu_shared.dll` to your `PATH` environment variable. You can do this by running the following command in the MSYS2 terminal:
+4. Add the path to `lbug_shared.dll` to your `PATH` environment variable. You can do this by running the following command in the MSYS2 terminal:
    ```bash
    export PATH="$(pwd)/lib/dynamic/windows:$PATH"
    ```
-   This is required to run the test cases and examples. If you are deploying your application, you can also copy the `kuzu_shared.dll` file to the same directory as your executable or to a directory that is already in the `PATH`.
+   This is required to run the test cases and examples. If you are deploying your application, you can also copy the `lbug_shared.dll` file to the same directory as your executable or to a directory that is already in the `PATH`.
 
 For an example of how to properly set up the environment, you can also refer to our CI configuration file [here](.github/workflows/go.yml).
 
 ## Contributing
-We welcome contributions to go-kuzu. By contributing to go-kuzu, you agree that your contributions will be licensed under the [MIT License](LICENSE). Please read the [contributing guide](CONTRIBUTING.md) for more information.
+We welcome contributions to go-lbug. By contributing to go-lbug, you agree that your contributions will be licensed under the [MIT License](LICENSE). Please read the [contributing guide](CONTRIBUTING.md) for more information.
 

@@ -1,6 +1,6 @@
-package kuzu
+package lbug
 
-// #include "kuzu.h"
+// #include "lbug.h"
 // #include <stdlib.h>
 import "C"
 
@@ -14,36 +14,36 @@ func unixEpoch() time.Time {
 	return time.Unix(0, 0)
 }
 
-// timeToKuzuDate converts a time.Time to a kuzu_date_t.
-func timeToKuzuDate(inputTime time.Time) C.kuzu_date_t {
+// timeToLbugDate converts a time.Time to a lbug_date_t.
+func timeToLbugDate(inputTime time.Time) C.lbug_date_t {
 	diff := inputTime.Sub(unixEpoch())
 	diffDays := math.Floor(diff.Hours() / 24)
-	cKuzuDate := C.kuzu_date_t{}
-	cKuzuDate.days = C.int32_t(diffDays)
-	return cKuzuDate
+	cLbugDate := C.lbug_date_t{}
+	cLbugDate.days = C.int32_t(diffDays)
+	return cLbugDate
 }
 
-// kuzuDateToTime converts a kuzu_date_t to a time.Time in UTC.
-func kuzuDateToTime(cKuzuDate C.kuzu_date_t) time.Time {
-	diff := time.Duration(cKuzuDate.days) * 24 * time.Hour
+// lbugDateToTime converts a lbug_date_t to a time.Time in UTC.
+func lbugDateToTime(cLbugDate C.lbug_date_t) time.Time {
+	diff := time.Duration(cLbugDate.days) * 24 * time.Hour
 	return unixEpoch().UTC().Add(diff)
 }
 
-// timeToKuzuTimestamp converts a time.Time to a kuzu_timestamp_t.
-func timeToKuzuTimestamp(inputTime time.Time) C.kuzu_timestamp_t {
+// timeToLbugTimestamp converts a time.Time to a lbug_timestamp_t.
+func timeToLbugTimestamp(inputTime time.Time) C.lbug_timestamp_t {
 	nanoseconds := inputTime.UnixNano()
 	microseconds := nanoseconds / 1000
-	cKuzuTime := C.kuzu_timestamp_t{}
-	cKuzuTime.value = C.int64_t(microseconds)
-	return cKuzuTime
+	cLbugTime := C.lbug_timestamp_t{}
+	cLbugTime.value = C.int64_t(microseconds)
+	return cLbugTime
 }
 
-// timeToKuzuTimestampNs converts a time.Time to a kuzu_timestamp_ns_t.
-func timeToKuzuTimestampNs(inputTime time.Time) C.kuzu_timestamp_ns_t {
+// timeToLbugTimestampNs converts a time.Time to a lbug_timestamp_ns_t.
+func timeToLbugTimestampNs(inputTime time.Time) C.lbug_timestamp_ns_t {
 	nanoseconds := inputTime.UnixNano()
-	cKuzuTime := C.kuzu_timestamp_ns_t{}
-	cKuzuTime.value = C.int64_t(nanoseconds)
-	return cKuzuTime
+	cLbugTime := C.lbug_timestamp_ns_t{}
+	cLbugTime.value = C.int64_t(nanoseconds)
+	return cLbugTime
 }
 
 // timeHasNanoseconds returns true if the time.Time has non-zero nanoseconds.
@@ -51,20 +51,20 @@ func timeHasNanoseconds(inputTime time.Time) bool {
 	return inputTime.Nanosecond() != 0
 }
 
-// durationToKuzuInterval converts a time.Duration to a kuzu_interval_t.
-func durationToKuzuInterval(inputDuration time.Duration) C.kuzu_interval_t {
+// durationToLbugInterval converts a time.Duration to a lbug_interval_t.
+func durationToLbugInterval(inputDuration time.Duration) C.lbug_interval_t {
 	microseconds := inputDuration.Microseconds()
 
-	cKuzuInterval := C.kuzu_interval_t{}
-	cKuzuInterval.micros = C.int64_t(microseconds)
-	return cKuzuInterval
+	cLbugInterval := C.lbug_interval_t{}
+	cLbugInterval.micros = C.int64_t(microseconds)
+	return cLbugInterval
 }
 
-// kuzuIntervalToDuration converts a kuzu_interval_t to a time.Duration.
-func kuzuIntervalToDuration(cKuzuInterval C.kuzu_interval_t) time.Duration {
-	days := cKuzuInterval.days
-	months := cKuzuInterval.months
-	microseconds := cKuzuInterval.micros
+// lbugIntervalToDuration converts a lbug_interval_t to a time.Duration.
+func lbugIntervalToDuration(cLbugInterval C.lbug_interval_t) time.Duration {
+	days := cLbugInterval.days
+	months := cLbugInterval.months
+	microseconds := cLbugInterval.micros
 	totalDays := int64(days) + int64(months)*30
 	totalSeconds := totalDays * 24 * 60 * 60
 	totalMicroseconds := totalSeconds*1000000 + int64(microseconds)
