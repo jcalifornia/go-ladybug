@@ -41,7 +41,7 @@ This option applies for situations where the user wants to clone the go-ladybug 
 
 If you prefer not to clone the go-ladybug repo, you can download the libraries (e.g. `lib-ladybug`) at build time. You can use the `download_lbug.sh` script directly from the repository:
 
-1.  Add a `go:generate` directive to your `main.go` or `tools.go` to download the libraries into a local folder (e.g. `lib-ladybug`). You can use the `download_lbug.sh` script directly from the repository:
+1.  Add a `go:generate` directive to your `main.go` or `tools.go` to download the libraries into a local folder (e.g. `lib-ladybug`) in order to automatically download the libraries at build time:
     ```go
     //go:generate sh -c "curl -sL https://raw.githubusercontent.com/LadybugDB/go-ladybug/refs/heads/master/download_lbug.sh | bash -s -- -out lib-ladybug"
     ```
