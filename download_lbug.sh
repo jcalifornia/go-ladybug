@@ -111,20 +111,15 @@ done
 if [ -n "$DOWNLOAD_ALL_LIBS" ]; then
     echo "Downloading all libraries for all platforms..."
 
-    # Determine header destination
-    header_dest="${out_dir:-.}"
-
     if [ -n "$out_dir" ]; then
-        # Download first library with header extraction
-        download_library "liblbug-linux-x86_64.tar.gz" "$out_dir/linux-amd64" "liblbug.so" "linux" "yes" "$out_dir"
-        # Download remaining libraries without re-extracting header
+        # External directory - don't copy header
+        download_library "liblbug-linux-x86_64.tar.gz" "$out_dir/linux-amd64" "liblbug.so" "linux"
         download_library "liblbug-linux-aarch64.tar.gz" "$out_dir/linux-arm64" "liblbug.so" "linux"
         download_library "liblbug-osx-universal.tar.gz" "$out_dir/osx" "liblbug.dylib" "osx"
         download_library "liblbug-windows-x86_64.zip" "$out_dir/windows" "lbug_shared.dll" "windows"
     else
-        # Download first library with header extraction to project root
+        # go-ladybug source tree - copy header from first download
         download_library "liblbug-linux-x86_64.tar.gz" "lib/dynamic/linux-amd64" "liblbug.so" "linux" "yes" "."
-        # Download remaining libraries
         download_library "liblbug-linux-aarch64.tar.gz" "lib/dynamic/linux-arm64" "liblbug.so" "linux"
         download_library "liblbug-osx-universal.tar.gz" "lib/dynamic/osx" "liblbug.dylib" "osx"
         download_library "liblbug-windows-x86_64.zip" "lib/dynamic/windows" "lbug_shared.dll" "windows"
@@ -192,8 +187,14 @@ case "$os" in
         ;;
 esac
 
-# Download the platform-specific library and extract header in one go
-header_dest="${out_dir:-.}"
-download_library "$asset" "$target_dir" "$lib_pattern" "$os" "yes" "$header_dest"
+# Download the platform-specific library
+# Only extract header if downloading to go-ladybug source (no -out flag)
+if [ -n "$out_dir" ]; then
+    # External directory - don't copy header
+    download_library "$asset" "$target_dir" "$lib_pattern" "$os"
+else
+    # go-ladybug source tree - copy header to project root
+    download_library "$asset" "$target_dir" "$lib_pattern" "$os" "yes" "."
+fi
 
 echo "Done!"
