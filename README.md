@@ -53,6 +53,8 @@ If you prefer not to clone the go-ladybug repo, you can download the libraries (
 
     This will download the libraries (and header file) into `lib-ladybug/` in your project root.
 
+    **Note:** You should add `lib-ladybug/` to your `.gitignore` file to avoid committing the binaries to your repository.
+
 3.  Configure `go-ladybug` to use the system libraries by using the `system_ladybug` build tag. You also need to tell Cgo where to find these libraries.
 
     You can add Cgo directives directly to your `main.go` (or any other Go file in your main package) to point to the local `lib-ladybug` directory:
