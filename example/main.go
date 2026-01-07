@@ -3,8 +3,25 @@ package main
 import (
 	"fmt"
 
-	"github.com/LadybugDB/go-ladybug"
+	lbug "github.com/LadybugDB/go-ladybug"
 )
+
+// To run this example with Option 2 (local library download), use:
+//
+// 1. Download libraries:
+//    go generate ./...
+//
+// 2. Build/Run with the system_ladybug tag:
+//    go run -tags system_ladybug main.go
+
+//go:generate sh -c "curl -sL https://raw.githubusercontent.com/LadybugDB/go-ladybug/refs/heads/master/download_lbug.sh | bash -s -- -out lib-ladybug"
+
+/*
+#cgo darwin LDFLAGS: -L${SRCDIR}/lib-ladybug -Wl,-rpath,${SRCDIR}/lib-ladybug
+#cgo linux LDFLAGS: -L${SRCDIR}/lib-ladybug -Wl,-rpath,${SRCDIR}/lib-ladybug
+#cgo windows LDFLAGS: -L${SRCDIR}/lib-ladybug
+*/
+import "C"
 
 func main() {
 	// Use an in-memory database for demonstration.
